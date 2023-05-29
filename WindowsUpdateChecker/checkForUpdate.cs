@@ -69,11 +69,12 @@ namespace WindowsUpdateChecker
                 var Host = MyIni.Read("Host");
                 var Port = MyIni.Read("Port");
                 var SSL = MyIni.Read("SSL");
-                var EMail = MyIni.Read("EMail");
+                var EMailFrom = MyIni.Read("EMailFrom");
+                var EMailTo = MyIni.Read("EMailTo");
                 var Password = MyIni.Read("Password");
 
                 Console.WriteLine("\n > > > sending mail...");
-                MailMessage message = new MailMessage(EMail, EMail);
+                MailMessage message = new MailMessage(EMailFrom, EMailTo);
                 message.Subject = "Windows Update News";
                 message.Body = mailContent;
                 message.IsBodyHtml = true;
@@ -90,7 +91,7 @@ namespace WindowsUpdateChecker
                 client.Timeout = 10000;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new System.Net.NetworkCredential(EMail, Password);
+                client.Credentials = new System.Net.NetworkCredential(EMailFrom, Password);
 
                 
                 //MailMessage mm = new MailMessage(EMail, Password, "NEW WINDOWS UPDATES AVAILABLE", mailContent);
